@@ -2,12 +2,12 @@ PREFIX = riscv64-unknown-elf-
 CC = $(PREFIX)gcc
 OBJCOPY = $(PREFIX)objcopy
 
-CFLAGS = -march=rv32i -mabi=ilp32 -nostartfiles -nostdlib -Wl,-T../common/linker.ld
+CFLAGS = -march=rv32i -mabi=ilp32 -nostartfiles -nostdlib -Wl,-Tlinker.ld
 
 all: rom.hex
 
 # 1. コンパイル & リンク (ELF生成)
-rom.elf: main.c ../common/linker.ld
+rom.elf: main.c linker.ld
 	$(CC) $(CFLAGS) -o $@ $<
 
 # 2. バイナリ抽出 (ELFヘッダなどを除去)
